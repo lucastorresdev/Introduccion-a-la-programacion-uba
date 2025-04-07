@@ -112,3 +112,5 @@ esMultiplo x y
     | mod y x == 0 = show x ++  " Es multiplo de " ++ show y
     | otherwise = show x  ++ " No es multiplo de " ++ show y
 
+-- i)
+
