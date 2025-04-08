@@ -1,4 +1,4 @@
-import System.Win32 (COORD(yPos), zeroMemory)
+
 -- ##################### Ejercicio 1 a) ###########################
 
 -- Patter Matching
@@ -107,10 +107,79 @@ sumaDistinto x y z
 
 -- h)
 
-esMultiplo :: Integer -> Integer -> String
+esMultiplo :: Integer -> Integer -> Bool
 esMultiplo x y
-    | mod y x == 0 = show x ++  " Es multiplo de " ++ show y
-    | otherwise = show x  ++ " No es multiplo de " ++ show y
+    | mod x y == 0 = True
+    | otherwise = False
 
 -- i)
 
+digitoUnidades :: Integer -> Integer
+digitoUnidades n = mod n 10
+
+-- j)
+
+digitoDecenas :: Integer -> Integer
+digitoDecenas x = div (mod x 100) 10
+
+-- ########## EJERCICIO 3 ###########
+
+estanRelacionados :: Integer -> Integer -> Bool
+estanRelacionados a b
+    | mod a b == 0 = True
+    | otherwise = False
+
+-- ######### EJERCICIO 4 ##########
+
+--  a)
+
+prodInt :: (Integer, Integer) -> (Integer, Integer) -> Integer
+prodInt (x1,y1) (x2, y2) = (x1*x2)+(y1*y2)
+
+-- b)
+
+todoMenor :: (Integer, Integer) -> (Integer, Integer) -> Bool
+todoMenor (x,y) (x1,y1)
+    |x<x1 && y<y1 = True
+    |otherwise = False
+
+-- c)
+
+distanciaPuntos :: (Float, Float) -> (Float, Float) -> Float
+distanciaPuntos (x,y) (x1,y1) = sqrt((x1-x) ^ 2 + (y1-y) ^ 2)
+
+-- d)
+
+sumaTerna :: (Float, Float, Float) -> Float
+sumaTerna (x,y,z) = x+y+z
+
+-- e)
+
+sumarSoloMultiplos :: (Integer, Integer, Integer) -> Integer -> Integer
+sumarSoloMultiplos (x,y,z) n
+    | esMultiplo x n && esMultiplo y n && esMultiplo z n = x + y + z
+    | esMultiplo x n && esMultiplo y n = x + y
+    | esMultiplo x n && esMultiplo z n = x + z
+    | esMultiplo y n && esMultiplo z n = y + z
+    | esMultiplo x n = x
+    | esMultiplo y n = y
+    | esMultiplo z n = z
+    | otherwise = 0
+
+
+-- f) 
+posPrimerPar :: (Integer, Integer, Integer) -> Integer
+posPrimerPar (x,y,z)
+    | mod x 2 == 0 = x
+    | mod y 2 == 0 = y
+    | mod z 2 == 0 = z
+    | otherwise = 4
+
+-- g)
+
+crearPar :: a->b->(a,b)
+crearPar a b = (a,b)
+
+-- h)
+invertir :: (a,b)->(b,a)
+invertir (a,b) = (b,a)
