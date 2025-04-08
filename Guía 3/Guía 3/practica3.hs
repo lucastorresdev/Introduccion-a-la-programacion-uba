@@ -114,10 +114,3 @@ esMultiplo x y
 
 -- i)
 
-digitoUnidades :: Integer -> String
-digitoUnidades n = "la unidad del numero es: " ++ show (mod n 10)
-
--- j)
-
-digitoDecenas :: Integer -> String
-digitoDecenas n = "La decena del numero es: " ++ show (mod n 100)
