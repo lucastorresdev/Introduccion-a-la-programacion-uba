@@ -1,4 +1,3 @@
-import System.Win32 (COORD(yPos), zeroMemory)
 -- ##################### Ejercicio 1 a) ###########################
 
 -- Patter Matching
@@ -31,7 +30,12 @@ g' n | n==8 = 16
 
 -- ########### ejercicio 1 c) #########
 
--- No entendí el enunciado
+
+h :: Integer -> Integer
+h = f . g
+
+k :: Integer -> Integer
+k x = g(f x)
 
 -- ############# Ejercicio 2 ##############
 
@@ -201,3 +205,28 @@ todosMenores (x, y, z)
     | funF x > funG x && funF y > funG y && funF z > funG z = True
     | otherwise = False
 
+-- ##### Ejercicio 6 #####
+
+biciesto :: Integer -> Bool
+biciesto n
+    | mod n 4 /= 0 || mod n 100 == 0 && mod n 400 /= 0 = False
+    | otherwise = True
+
+-- ##### Ejercicio 7 #####
+
+distanciaManhattan :: (Float, Float, Float) -> (Float, Float, Float) -> Float
+distanciaManhattan (x,y,z) (x1,y1,z1)
+    | (x-x1)+(y-y1)+(z-z1) < 0 = ((x-x1)+(y-y1)+(z-z1))*(-1)
+    | otherwise = (x-x1)+(y-y1)+(z-z1)
+
+
+-- ##### Ejercicio 8 #####
+
+sumaUltimosDosDigitos :: Integer -> Integer 
+sumaUltimosDosDigitos n = mod n 10 + mod (div n 10) 10
+
+comparar :: Integer -> Integer -> Integer
+comparar a b
+    | sumaUltimosDosDigitos a < sumaUltimosDosDigitos b = 1
+    | sumaUltimosDosDigitos a > sumaUltimosDosDigitos b = -1
+    | sumaUltimosDosDigitos a == sumaUltimosDosDigitos b = 0
