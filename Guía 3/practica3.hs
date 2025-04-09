@@ -107,10 +107,10 @@ sumaDistinto x y z
 
 -- h)
 
-esMultiplo :: Integer -> Integer -> String
+esMultiplo :: Integer -> Integer -> Bool
 esMultiplo x y
-    | mod y x == 0 = show x ++  " Es multiplo de " ++ show y
-    | otherwise = show x  ++ " No es multiplo de " ++ show y
+    | mod y x == 0 = True
+    | otherwise = False
 
 -- i)
 
@@ -121,3 +121,83 @@ digitoUnidades n = "la unidad del numero es: " ++ show (mod n 10)
 
 digitoDecenas :: Integer -> String
 digitoDecenas n = "La decena del numero es: " ++ show (mod n 100)
+
+-- ########## EJERCICIO 3 ###########
+
+estanRelacionados :: Integer -> Integer -> Bool
+estanRelacionados a b
+    | mod a b == 0 = True
+    | otherwise = False
+
+-- ######### EJERCICIO 4 ##########
+
+--  a)
+
+prodInt :: (Integer, Integer) -> (Integer, Integer) -> Integer
+prodInt (x1,y1) (x2, y2) = (x1*x2)+(y1*y2)
+
+-- b)
+
+todoMenor :: (Integer, Integer) -> (Integer, Integer) -> Bool
+todoMenor (x,y) (x1,y1)
+    |x<x1 && y<y1 = True
+    |otherwise = False
+
+-- c)
+
+distanciaPuntos :: (Float, Float) -> (Float, Float) -> Float
+distanciaPuntos (x,y) (x1,y1) = sqrt((x1-x) ^ 2 + (y1-y) ^ 2)
+
+-- d)
+
+sumaTerna :: (Float, Float, Float) -> Float
+sumaTerna (x,y,z) = x+y+z
+
+-- e)
+
+sumarSoloMultiplos :: (Integer, Integer, Integer) -> Integer -> Integer
+sumarSoloMultiplos (x,y,z) n
+    | esMultiplo x n && esMultiplo y n && esMultiplo z n = x + y + z
+    | esMultiplo x n && esMultiplo y n = x + y
+    | esMultiplo x n && esMultiplo z n = x + z
+    | esMultiplo y n && esMultiplo z n = y + z
+    | esMultiplo x n = x
+    | esMultiplo y n = y
+    | esMultiplo z n = z
+    | otherwise = 0
+
+
+-- f) 
+posPrimerPar :: (Integer, Integer, Integer) -> Integer
+posPrimerPar (x,y,z)
+    | mod x 2 == 0 = x
+    | mod y 2 == 0 = y
+    | mod z 2 == 0 = z
+    | otherwise = 4
+
+-- g)
+
+crearPar :: a->b->(a,b)
+crearPar a b = (a,b)
+
+-- h)
+invertir :: (a,b)->(b,a)
+invertir (a,b) = (b,a)
+
+-- ####### EJERCICIO 5 #######
+
+funF :: Integer -> Integer
+funF n
+    | n <= 7 = (-n) ^ 2
+    | n > 7 = - 2 * n - 1
+
+funG :: Integer -> Integer
+funG n
+    | mod n 2 == 0 = div n 2
+    | otherwise = 3*n+1
+
+todosMenores :: (Integer, Integer, Integer) -> Bool
+todosMenores (x, y, z)
+    | funF x > funG x && funF y > funG y && funF z > funG z = True
+    | otherwise = False
+
